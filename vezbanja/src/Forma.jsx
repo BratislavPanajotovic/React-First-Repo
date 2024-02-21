@@ -9,13 +9,25 @@ const User = () => {
   });
 
   const handleChange = (e) => {
-    const name = e.target.name;
-    const age = e.target.age;
-    const email = e.target.email;
+    const { name, value, type, checked } = e.target;
 
-    const value = e.target.value;
     setPerson((prevState) => ({ ...prevState, [name]: value }));
   };
+
+  const subscribed = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    if (type === "checkbox") {
+      setPerson((prevState) => ({ ...prevState, [name]: checked }));
+    }
+    if (person.subscribe) {
+      const span = document.createElement("span");
+      span.innerHTML = "You have successfully subscribed to our newsletter!";
+      document.querySelector(".data").appendChild(span);
+    }
+  };
+
+  subscribed();
 
   return (
     <form>
@@ -27,8 +39,9 @@ const User = () => {
       <p>Enter your e-mail</p>
       <input type="text" name="email" onChange={handleChange} />
       <p>Would you like to subscribe to our newsletter ?</p>
+      <input type="checkbox" name="subscribe" onChange={handleChange} />
 
-      <p>
+      <p className="data">
         Name:{person.name} <br />
         Age: {person.age} <br />
         Email: {person.email}
