@@ -1,20 +1,25 @@
 import { useState } from "react";
+import ListItem from "./CounterListItem";
 
 const CounterList = () => {
   const [counters, setCounters] = useState([
     { id: 1, value: 0 },
-    { id: 2, value: 0 },
-    { id: 3, value: 0 },
+    { id: 2, value: 1 },
+    { id: 3, value: 2 },
   ]);
 
   return (
     <div>
       <h1>Counters list:</h1>
       <ul>
-        {/* map through the counters array and create a li for each counter */}
-        {counters.map((j, index) => (
-          <li key={index}>{j.value}</li>
-        ))}
+        {counters.map((counter) => {
+          return (
+            <li>
+              {" "}
+              {counter.id} : <ListItem counter={counter} />
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
