@@ -11,22 +11,24 @@ const User = () => {
     const { name, value, type, checked } = e.target;
     setPerson((prevState) => ({ ...prevState, [name]: value }));
   };
-
-  // Stigli smo do toga da ne pogadjamo nista (najverovatnije) sa e.target.value === "checked"
-
   const subscribed = (e) => {
-    if (e.target.value === "checked") {
-      setPerson({ ...person, subscribe: true });
-    }
-    if (
-      person.subscribe === true &&
-      document.querySelector(".newsletter") == ""
-    ) {
-      document.querySelector(
-        ".newsletter"
-      ).textContent = `You are now signed up for our newsletter!`;
-    }
+    setPerson((prevPerson) => {
+      const updatedPerson = { ...prevPerson, subscribe: e.target.checked };
+
+      if (e.target.checked) {
+        document.querySelector(
+          ".newsletter"
+        ).textContent = `You are now subscribed for our newsletter!`;
+      } else {
+        document.querySelector(
+          ".newsletter"
+        ).textContent = `You have successfully unsubscribed from our newsletter!`;
+      }
+
+      return updatedPerson;
+    });
   };
+
   return (
     <form>
       <h1>User Information</h1>
