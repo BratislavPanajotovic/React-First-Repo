@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import api from "../settings/api";
 
 const GetUsers = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     //response
-    axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
+    api.get("/users").then((res) => {
       console.log(res);
       setUsers(res.data);
     });
