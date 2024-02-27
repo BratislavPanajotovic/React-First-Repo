@@ -6,6 +6,16 @@ const UserItem = () => {
   const { userId } = useParams();
   const { users } = useContext(UsersContext);
   const [user, setUser] = useState(undefined);
+  //! Za navigaciju u react router-u
+  const navigate = useNavigate();
+
+  const handleHomeButton = () => {
+    navigate("/");
+  };
+
+  const handleBackButton = () => {
+    navigate(-1);
+  };
 
   useEffect(() => {
     const user = users.find((user) => user.id === parseInt(userId));
@@ -17,6 +27,8 @@ const UserItem = () => {
     <>
       {" "}
       <h1>User item: {userId}</h1>
+      <button onClick={handleHomeButton}>Home</button>
+      <button onClick={handleBackButton}>Back</button>
       {user ? (
         <div>
           <p>name: {user.name}</p>
