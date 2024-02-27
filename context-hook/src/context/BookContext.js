@@ -4,13 +4,13 @@ export const BookContext = createContext();
 
 const BookContextProvider = (props) => {
   const [books, setBooks] = useState([
-    { id: 1, title: "The Catcher in the Rye" },
-    { id: 2, title: "nepodnosljiva lakoca React-a" },
-    { id: 3, title: "ubiti pticu rugalicu" },
+    { title: "ubiti pticu rugalicu", id: 1 },
+    { title: "nepodnosljiva lakoca React-a", id: 2 },
+    { title: "ko je maznuo moj sir", id: 3 },
   ]);
-
   return (
-    <BookContext.Provider value={{ books: books }}>
+    <BookContext.Provider value={{ books }}>
+      {/* props.children nam omogucava da bilo koja ugnjezdena komponenta u okviru BookContextProvider-a da moze da pristupi context-u koji je provajdovan od strane BookContext-a */}
       {props.children}
     </BookContext.Provider>
   );

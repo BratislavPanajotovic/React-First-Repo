@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import BookContextProvider from "./context/BookContext";
 import "./App.css";
 import Booklist from "./components/Booklist";
