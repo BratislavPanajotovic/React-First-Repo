@@ -1,10 +1,15 @@
+import { useState, useEffect } from "react";
+import instance from "../../services/api.js";
+import Company from "../company/Company.jsx";
 const HomeView = () => {
+  const [companyInfo, setCompanyInfo] = useState(undefined);
+  useEffect(() => {
+    instance.get("company").then((res) => {
+      setCompanyInfo(res.data);
+    });
+  }, []);
   return (
-    <>
-      {" "}
-      <h1>HomeView</h1>
-    </>
+    <div>{companyInfo ? <Company companyInfo={companyInfo} /> : null}</div>
   );
 };
-
 export default HomeView;
