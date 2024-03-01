@@ -1,13 +1,16 @@
-import "../error/style.css";
+import "./style.css";
 import { ReactComponent as Refresh } from "../../assets/Refresh.svg";
 import { useNavigate } from "react-router-dom";
-
-const Error = () => {
+const Error = ({ error }) => {
+  const navigate = useNavigate();
+  const refreshPage = () => {
+    navigate(0); //reload current route
+  };
   return (
     <div className="error-wrapper">
-      {" "}
-      <h1>Something went wrong...</h1> <button>Please try again</button>
-      <div className="refresh-icon">
+      <p>Something went wrong. Please try again</p>
+      <p>{error ? error.data : null}</p>
+      <div className="refresh-icon" onClick={refreshPage}>
         <Refresh />
       </div>
     </div>

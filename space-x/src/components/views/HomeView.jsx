@@ -11,7 +11,7 @@ const HomeView = () => {
 
   useEffect(() => {
     instance
-      .get("compansy")
+      .get("company")
       .then((res) => setCompanyInfo(res.data))
       .catch((error) => {
         setError(true);
